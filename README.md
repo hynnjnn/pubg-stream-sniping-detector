@@ -1,3 +1,7 @@
+🔗 **Tableau Public 대시보드 확인하기:** [링크 이동](https://public.tableau.com/app/profile/.32725757/viz/_17794632284560/sheet0?publish=yes)
+
+---
+
 # 🎮 PUBG API 기반 스트림 스나이핑 실태 조사 및 시각화 보고서
 
 ## 1. ❓ 문제 정의 (Problem Statement)
@@ -25,7 +29,11 @@
 ### ⏱️ [비동기 시계열 데이터 거리 계산: pd.merge_asof 활용]
 배틀그라운드 텔레메트리의 위치 로그는 개별 플레이어의 진입 시점을 기준으로 각각 10초 간격으로 기록되는 것을 확인할 수 있었다. 이로 인해 플레이어 간 타임스탬프가 초 단위로 일치하지 않는 '시계열 비동기화 문제'가 발생하였고, 일반적인 Pandas의 `merge` 함수로는 스트리머와 유저 간의 정확한 거리 계산에 한계가 있었다. 
 
-![merge_asof 설명 사진](Pasted image 20260524092520.png)
+<div align="center">
+  <img width="958" height="466" alt="Image" src="https://github.com/user-attachments/assets/339ce4a8-63d1-451c-922d-c3f6ee5e608d" />
+  <br/>
+  <sub><b>주석:</b> pd.merge_asof 동작 예시</sub>
+</div><br/>
 
 이를 해결하기 위해 Pandas의 `merge_asof`함수와 `direction='nearest'` 옵션을 활용하여 각 유저의 로그 시간과 가장 가가운 스트리머의 위치 데이터를 매칭하여 거리를 계산할 수 있었다. 또한 `tolerance=pd.Timedelta(seconds=12)` 옵션을 통해 허용 오차를 12초로 두고 이를 초과한다면 거리 계산 제외 및 콘솔에 해당 사항을 출력하도록 처리하였다. 
 
@@ -36,7 +44,12 @@
 ## 3. 📈 시각화 및 인사이트 (Visualization & Insight)
 
 ### 📊 [Tableau 인터랙티브 대시보드 구현]
-![Tabeau 대시보드 이미지](Pasted image 20260524094028.png)
+
+<div align="center">
+  <img width="1692" height="842" alt="Image" src="https://github.com/user-attachments/assets/7c70ef6f-25e8-4a0b-b520-e5fba804bb86" />
+  <br/>
+  <sub><b>주석:</b> Tabeau 대시보드 이미지</sub>
+</div><br/>
 
 대시보드 전용 작업 시트를 숨김(Hide) 처리하여 깔끔한 레이아웃을 유지하고, '매치 목록 필터 ➔ 저격 의심 유저 랭킹 ➔ 실시간 동선 맵'으로 이어지는 인터랙티브 UI/UX를 구현하였다. 
 
@@ -53,7 +66,11 @@
 * **주요 사례:** 19개 매치 중 11회 매칭(1명), 10회 매칭(1명), 8회 매칭(2명) 등
 * **분석:** 이는 동시 동접자 수를 고려했을 때 우연히 만날 수 있는 확률을 넘어서는 수치이며, 스트리머의 방송 화면을 실시간으로 확인하고 의도적으로 매칭했음을 보여주는 결정적 증거다.
 
-![저격 동선 시각화](Pasted image 20260524145622.png)
+<div align="center">
+  <img width="816" height="609" alt="Image" src="https://github.com/user-attachments/assets/b0684880-b693-4423-a8f4-70b4a822b3a2" />
+  <br/>
+  <sub><b>주석:</b> 저격 동선 시각화</sub>
+</div><br/>
 
 #### 🗺️ 인게임 동선 교차 검증 (정성적·교차 증명)
 저격 의심 랭킹 상위 유저들의 이동 경로를 인게임 맵상에 시각화하여 교차 검증한 결과, 스트리머의 낙하 위치 및 이동 동선을 비정상적으로 따라오는 명확한 패턴을 확인할 수 있었다. 
