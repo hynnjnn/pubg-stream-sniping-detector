@@ -1,0 +1,16 @@
+# 📁 Python cache directories
+__pycache__/
+
+# 📁 Data and tracking directories
+maps/
+matches/
+player_data/
+position_data/
+telemetry_data/
+
+# 🔒 Configuration and credential files
+config.py
+
+# 🛠️ Temporary or script files
+tmp.py
+player_position_loader.py
